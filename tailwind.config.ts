@@ -9,47 +9,31 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        sans: ["var(--font-jetbrains)"],
+        mono: ["var(--font-jetbrains)"],
+        serif: ["var(--font-fraunces)"],
+      },
       colors: {
-        background: "hsl(var(--background))",
-        foreground: "hsl(var(--foreground))",
-        card: {
-          DEFAULT: "hsl(var(--card))",
-          foreground: "hsl(var(--card-foreground))",
-        },
-        popover: {
-          DEFAULT: "hsl(var(--popover))",
-          foreground: "hsl(var(--popover-foreground))",
-        },
-        primary: {
-          DEFAULT: "hsl(var(--primary))",
-          foreground: "hsl(var(--primary-foreground))",
-        },
-        secondary: {
-          DEFAULT: "hsl(var(--secondary))",
-          foreground: "hsl(var(--secondary-foreground))",
-        },
-        muted: {
-          DEFAULT: "hsl(var(--muted))",
-          foreground: "hsl(var(--muted-foreground))",
-        },
-        accent: {
-          DEFAULT: "hsl(var(--accent))",
-          foreground: "hsl(var(--accent-foreground))",
-        },
-        destructive: {
-          DEFAULT: "hsl(var(--destructive))",
-          foreground: "hsl(var(--destructive-foreground))",
-        },
-        border: "hsl(var(--border))",
-        input: "hsl(var(--input))",
-        ring: "hsl(var(--ring))",
-        chart: {
-          "1": "hsl(var(--chart-1))",
-          "2": "hsl(var(--chart-2))",
-          "3": "hsl(var(--chart-3))",
-          "4": "hsl(var(--chart-4))",
-          "5": "hsl(var(--chart-5))",
-        },
+        'bg-0': 'var(--bg-0)',
+        'bg-1': 'var(--bg-1)',
+        'bg-2': 'var(--bg-2)',
+        'bg-3': 'var(--bg-3)',
+        'line': 'var(--line)',
+        'line-soft': 'var(--line-soft)',
+        'text-0': 'var(--text-0)',
+        'text-1': 'var(--text-1)',
+        'text-2': 'var(--text-2)',
+        'text-3': 'var(--text-3)',
+        'amber': 'var(--amber)',
+        'amber-dim': 'var(--amber-dim)',
+        'cyan': 'var(--cyan)',
+        'cyan-dim': 'var(--cyan-dim)',
+        'green': 'var(--green)',
+        'green-dim': 'var(--green-dim)',
+        'red': 'var(--red)',
+        'red-dim': 'var(--red-dim)',
+        'magenta': 'var(--magenta)',
       },
       borderRadius: {
         lg: "var(--radius)",
