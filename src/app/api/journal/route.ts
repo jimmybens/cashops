@@ -1,9 +1,10 @@
 import { fetchJournalEvents } from '@/lib/google-sheets';
-import { NextResponse } from 'next/server';
+import { NextResponse, NextRequest } from 'next/server';
 
-export const revalidate = 300;  // 5 min cache
+export const dynamic = 'force-dynamic'; // Prevent static generation errors when using req.url
+// We'll handle caching differently if needed, or Vercel Edge caching can be used
 
-export async function GET(req: Request) {
+export async function GET(req: NextRequest) {
   try {
     const { searchParams } = new URL(req.url);
     const filiale = searchParams.get('filiale') as 'PV' | 'MD' | null;
@@ -15,10 +16,11 @@ export async function GET(req: Request) {
       fetchedAt: new Date().toISOString(),
       count: events.length 
     });
-  } catch (error) {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  } catch (error: any) {
     console.error('API /api/journal error:', error);
     return NextResponse.json(
-      { error: 'Failed to fetch journal events' },
+      { error: 'Failed to fetch journal events', details: error.message || String(error) },
       { status: 500 }
     );
   }

@@ -27,11 +27,12 @@ export async function fetchJournalEvents(
       const [headers, ...dataRows] = rows;
       
       for (const row of dataRows) {
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         const obj: any = {};
         headers.forEach((h: string, i: number) => { obj[h] = row[i] ?? ''; });
         results.push(parseJournalRow(obj));
       }
-    } catch (error) {
+    } catch (error: any) {
       console.error(`Error fetching data for filiale ${f}:`, error);
     }
   }
@@ -39,6 +40,7 @@ export async function fetchJournalEvents(
   return results;
 }
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 function parseJournalRow(raw: any): JournalEvent {
   return {
     mvt_id: String(raw.mvt_id || ''),
@@ -48,9 +50,9 @@ function parseJournalRow(raw: any): JournalEvent {
     filiale: raw.filiale as Filiale,
     event_date: parseSheetDate(raw.event_date),
     event_timestamp: String(raw.event_timestamp || ''),
-    montant: parseFloat(raw.montant?.replace(',', '.') || '0') || 0,
+    montant: parseFloat(String(raw.montant || '0').replace(',', '.')) || 0,
     sens: raw.sens as Sens,
-    montant_signe: parseFloat(raw.montant_signe?.replace(',', '.') || '0') || 0,
+    montant_signe: parseFloat(String(raw.montant_signe || '0').replace(',', '.')) || 0,
     devise: String(raw.devise || 'EUR'),
     statut_unifie: raw.statut_unifie as StatutUnifie,
     statut_source: String(raw.statut_source || ''),
@@ -69,6 +71,7 @@ function parseJournalRow(raw: any): JournalEvent {
   };
 }
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 function parseSheetDate(v: any): Date {
   if (!v) return new Date(0);
   if (v instanceof Date) return v;
