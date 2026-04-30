@@ -32,7 +32,7 @@ export async function fetchJournalEvents(
         headers.forEach((h: string, i: number) => { obj[h] = row[i] ?? ''; });
         results.push(parseJournalRow(obj));
       }
-    } catch (error: any) {
+    } catch (error) {
       console.error(`Error fetching data for filiale ${f}:`, error);
     }
   }

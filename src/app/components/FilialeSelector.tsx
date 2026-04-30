@@ -1,11 +1,12 @@
 'use client';
 
-import { useRouter, useSearchParams } from 'next/navigation';
+import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 
 export function FilialeSelector() {
   const router = useRouter();
+  const pathname = usePathname();
   const searchParams = useSearchParams();
-  
+
   const currentFiliale = searchParams.get('filiale') || 'ALL';
 
   const setFiliale = (filiale: string) => {
@@ -15,7 +16,8 @@ export function FilialeSelector() {
     } else {
       params.set('filiale', filiale);
     }
-    router.push(`/?${params.toString()}`);
+    const qs = params.toString();
+    router.push(qs ? `${pathname}?${qs}` : pathname);
   };
 
   const options = ['ALL', 'PV', 'MD'];
